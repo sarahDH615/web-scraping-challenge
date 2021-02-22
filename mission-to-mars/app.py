@@ -1,70 +1,48 @@
 # 1. imports
-from flask import Flask
-import sys
-import os
-import pymongo
+from flask import Flask, render_template, redirect
+from flask_pymongo import PyMongo
+import scrape
+
 
 # 2. Create an app, being sure to pass __name__
 app = Flask(__name__)
 
+app.config["MONGO_URI"] = "mongodb://localhost:27017/marsDB"
+mongo = PyMongo(app)
 
-# 3. Define what to do when a user hits the index route
+# home route
 @app.route("/")
 def home():
     #extra imports
     from bson import json_util, ObjectId
     import json
-
-    # estb connection
-    conn = 'mongodb://localhost:27017'
-    client = pymongo.MongoClient(conn)
     
-    # connect to the db marsDB
-    db = client.marsDB
+    mars_data = mongo.db.mars_info.find_one()
 
-    # create a variable for the (presumably one entry)
-    mars_info = db.mars_info.find()
+    return render_template(
+        'index.html', 
+        nasa_title = mars_data['nasa_news']['news_title'],
+        nasa_pp = mars_data['nasa_news']['news_pp'],
+        jpl_img = mars_data['jpl_featured_image'],
+        table = mars_data['mars_facts_table'],
+        hemi1title = mars_data['hemisphere_image_urls'][0]['title'],
+        hemi1url = mars_data['hemisphere_image_urls'][0]['img_url'],
+        hemi2title = mars_data['hemisphere_image_urls'][1]['title'],
+        hemi2url = mars_data['hemisphere_image_urls'][1]['img_url'],
+        hemi3title = mars_data['hemisphere_image_urls'][2]['title'],
+        hemi3url = mars_data['hemisphere_image_urls'][2]['img_url'],
+        hemi4title = mars_data['hemisphere_image_urls'][3]['title'],
+        hemi4url = mars_data['hemisphere_image_urls'][3]['img_url'],
+        )
 
-    # save any entries to a list
-    mars_info_list = []
-    for entry in mars_info:
-        mars_info_list.append(entry)
-    
-    # save the first and only entry as a variable for html use
-    mars_entry = mars_info_list[0]
-
-    mars_sanitised = json.loads(json_util.dumps(mars_entry))
-    return mars_sanitised
-
-
-
-# 4. Define what to do when a user hits the /about route
+# scrape route
 @app.route("/scrape")
 def do_scrape():
-    # importing scrape function
-    from scrape import scrape
+    mars_info = mongo.db.mars_info
+    new_mars_data = scrape.scrape()
+    mars_info.update({}, new_mars_data, upsert=True)
 
-    #running scrape
-    mars_dict = scrape()
-
-    # connecting to mongo to insert in db collection
-    # estb connection
-    conn = 'mongodb://localhost:27017'
-    client = pymongo.MongoClient(conn)
+    return redirect('/', code=302)
     
-    # connect to the db marsDB
-    db = client.marsDB
-
-    # getting rid of the collection mars_info if it already exists
-    collist = db.list_collection_names()
-    if 'mars_info' in collist:
-        db.mars_info.drop()
-
-    # inserting the results of scrape into the collection
-    db.mars_info.insert_one(mars_dict)
-
-    return 'Scraping and entry complete!'
-
-
 if __name__ == "__main__":
     app.run(debug=True)

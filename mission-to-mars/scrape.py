@@ -76,9 +76,13 @@ def scrape():
     mars_facts_df.columns = [' ', 'Mars facts']
     mars_facts_df = mars_facts_df.set_index(' ')
 
-    # removing the \n breaks
-    mars_table = mars_facts_df.to_html(justify='center').replace('\n', '')
-
+    # # removing the \n breaks
+    mars_table = mars_facts_df.to_html(
+        justify='center', header=False,
+        classes=["table-striped", "table-responsive"]).replace(
+            'dataframe ', '').replace('border="1"', '').replace(
+            '\n', '')
+    
 
     #------------------------------------------------------------------------
     # ## Hemisphere images
@@ -139,7 +143,4 @@ def scrape():
         'hemisphere_image_urls': hemisphere_image_urls
     }
 
-    #print(return_dict)
     return return_dict
-
-#scrape()
