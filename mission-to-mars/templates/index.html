@@ -37,12 +37,12 @@
         </div>
         <!-- end of div class row (mars news row)-->
         <div class="row">
-          <div class="col-6 pl-4" style='padding:0'>
+          <div class="col-lg-6 col-xs-12 pl-4">
             <h3>Featured Mars Image</h3>
             <img src= {{ jpl_img  }} class='img-fluid' alt="Featured Image">
           </div>
           <!-- end of div class col 6 (featured mars img)-->
-          <div class="col-6" style='padding-left: 70px;'>
+          <div class="col-lg-6 col-xs-12" style='padding-left: 70px;'>
               <h4>Mars Facts</h4>
               <!-- using |safe to make sure the table reads as a table, not a string -->
               {{ table|safe }}
@@ -59,9 +59,9 @@
           </div>
           <!-- end of div class col 12 (mars hemi title) -->
           <!-- using cards to hold mars hemi pictures and titles -->
-          <div class='col-6 pt-4'>
+          <div class='col-lg-6 col-xs-12 pt-4'>
             <div class="card" style="width: 35rem;">
-              <img class="card-img-top" src= {{ hemi1url }} alt="Card image cap">
+              <img class="card-img-top img-fluid" src= {{ hemi1url }} alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{ hemi1title }}</h5>
               </div>
@@ -70,9 +70,9 @@
             <!-- end of card div -->
           </div>
           <!-- end of div col 6 (one card) -->
-          <div class='col-6 pt-4'>
+          <div class='col-lg-6 col-xs-12 pt-4'>
             <div class="card" style="width: 35rem;">
-              <img class="card-img-top" src= {{ hemi2url }} alt="Card image cap">
+              <img class="card-img-top img-fluid" src= {{ hemi2url }} alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{ hemi2title }}</h5>
               </div>
@@ -81,9 +81,9 @@
             <!-- end of card div -->
           </div>
           <!-- end of div col 6 (one card) -->
-          <div class='col-6 pt-4'>
+          <div class='col-lg-6 col-xs-12 pt-4'>
             <div class="card" style="width: 35rem;">
-              <img class="card-img-top" src= {{ hemi3url }} alt="Card image cap">
+              <img class="card-img-top img-fluid" src= {{ hemi3url }} alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{ hemi3title }}</h5>
               </div>
@@ -92,9 +92,9 @@
             <!-- end of card div -->
           </div>
           <!-- end of div col 6 (one card) -->
-          <div class='col-6 pt-4'>
+          <div class='col-lg-6 col-xs-12 pt-4'>
             <div class="card" style="width: 35rem;">
-              <img class="card-img-top" src= {{ hemi4url }} alt="Card image cap">
+              <img class="card-img-top img-fluid" src= {{ hemi4url }} alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{ hemi4title }}</h5>
               </div>
