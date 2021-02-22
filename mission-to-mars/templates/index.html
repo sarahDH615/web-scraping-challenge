@@ -8,39 +8,98 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-  <!-- stylesheet -->
-  <link rel='stylesheet' type='text/css' href='../style/styles.css'>
-
   <title>Latest Mars News</title>
 </head>
 
 <body>
-  <div class="container-fluid ml-1">
+    <div class="container-fluid ml-1" style='margin-bottom: 50px;'>
       <div class="row bg-light">
-          <div class="col-xs-12 header_container">
+          <div class="w-15 p-5 mx-auto">
               <header>
-                  <h2>Mission to Mars</h2>
-                  <button type="button" class="btn btn-primary"><a class="btn btn-primary" href="/scrape" role="button">Scrape New Data</a></button>
+                  <h2 style='width:max-content;margin-right:0px;'>Mission to Mars</h2>
+                  <button type="button" class="btn btn-primary" style='margin-left:20px;'><a class="btn btn-primary" href="/scrape" role="button">Scrape New Data</a></button>
               </header>
           </div>
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <h3>Latest Mars News</h3>
-          <h5>{{ nasa_title }}</h5>
-          <p>{{ nasa_pp }}</p>
+      <div class='non_header' style='padding-left: 50px;'>
+        <div class="row">
+          <div class="col-xs-12 pt-5 pl-4">
+            <h3>Latest Mars News</h3>
+            <h5>{{ nasa_title }}</h5>
+            <p>{{ nasa_pp }}</p>
+          </div>
+          <!-- end of div class col 12 (mars news col)-->
         </div>
+        <!-- end of div class row (mars news row)-->
+        <div class="row">
+          <div class="col-6 pl-4" style='padding:0'>
+            <h3>Featured Mars Image</h3>
+            <img src= {{ jpl_img  }} class='img-fluid' alt="Featured Image">
+          </div>
+          <!-- end of div class col 6 (featured mars img)-->
+          <div class="col-6 table_container" style='padding-left: 70px;'>
+              <h4>Mars Facts</h4>
+              {{ table|safe }}
+          </div>
+          <!-- end of div class col 6 (table)-->
+        </div>
+        <!-- end of div class row (img and table) -->
+        <div class='row pt-5'>
+          <div class='col-12'>
+            <div class='w-25 mx-auto'>
+              <h4>Mars Hemispheres</h4>
+            </div>
+          </div>
+          <!-- end of div class col 12 (mars hemi title) -->
+          <div class='col-6 pt-4'>
+            <div class="card" style="width: 35rem;">
+              <img class="card-img-top" src= {{ hemi1url }} alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{ hemi1title }}</h5>
+              </div>
+              <!-- end of card body div -->
+            </div>
+            <!-- end of card div -->
+          </div>
+          <!-- end of div col 6 (one card) -->
+          <div class='col-6 pt-4'>
+            <div class="card" style="width: 35rem;">
+              <img class="card-img-top" src= {{ hemi2url }} alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{ hemi2title }}</h5>
+              </div>
+              <!-- end of card body div -->
+            </div>
+            <!-- end of card div -->
+          </div>
+          <!-- end of div col 6 (one card) -->
+          <div class='col-6 pt-4'>
+            <div class="card" style="width: 35rem;">
+              <img class="card-img-top" src= {{ hemi3url }} alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{ hemi3title }}</h5>
+              </div>
+              <!-- end of card body div -->
+            </div>
+            <!-- end of card div -->
+          </div>
+          <!-- end of div col 6 (one card) -->
+          <div class='col-6 pt-4'>
+            <div class="card" style="width: 35rem;">
+              <img class="card-img-top" src= {{ hemi4url }} alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{ hemi4title }}</h5>
+              </div>
+              <!-- end of card body div -->
+            </div>
+            <!-- end of card div -->
+          </div>
+          <!-- end of div col 6 (one card) -->
+        </div>
+        <!-- end of div class row (for mars hemis) -->
       </div>
-      <div class="row">
-        <div class="col-6" style='padding:0'>
-          <h3>Featured Mars Image</h3>
-          <img src= {{ jpl_img  }} class='img-fluid' alt="Featured Image">
-        </div>
-        <div class="col-6 table_container">
-            <h4>Mars Facts</h4>
-            {{ table|safe }}
-        </div>
-      </div>
+      <!-- end of div class non header -->
     </div>
+    <!-- end of div container -->
 </body>
 </html>
