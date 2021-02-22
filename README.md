@@ -37,3 +37,33 @@ mission-to-mars.ipynb:
 scrape.py:
 - enclosing the code in a function, scrape
 - having the function return the dictionary defined in mission-to-mars.ipynb
+
+#### b. Sending data to MongoDB
+
+files: app.py
+
+- creating a Flask application with a scrape route
+    - connecting to a Mongo database and creating a collection, mars_info, if it does not already exist
+    - calling scrape.py's scrape() function to scrape new data from the websites
+    - updating the database with the scraping results
+    - returning the user back to the home route
+
+#### c. Displaying the data on a webpage
+
+files: app.py, index.html
+
+app.py
+- adding a home route to the Flask application that: 1) retrieves data from the Mongo database, 2) sends the information to the html template
+    - connecting the the Mongo database and retrieving the record from the collection mars_info
+    - separating out the different items in the returned dictionary and saving them to variables
+    - sending those variables to the index.html template using render_template()
+
+index.html
+- creating an html template to structure and style the data
+    - linking bootstrap as a stylesheet
+        - using bootstrap to place all page elements within a grid
+        - using stylings for buttons and cards
+    - creating a header section containing a button linking to the scrape route on the Flask app, for re-scraping data
+    - creating a segment that spans the whole page (column size 12) to hold the Nasa headline and teaser text
+    - creating two half-page-width segments, one of which holds the Featured Mars Image, and the other holding the Mars Facts table
+    - creating a segment to hold the Mars Hemisphere images, each within a Bootstrap card
