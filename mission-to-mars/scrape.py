@@ -49,13 +49,19 @@ def scrape():
 
     # finding the most recent image to click into 
     # clicking into the image
-    partial_href = soup.find('div', class_='SearchResultCard').find('a', class_='group')['href']
-    browser.click_link_by_partial_href(partial_href)
-    sleep(10)
+    try:
+        partial_href = soup.find('div', class_='SearchResultCard').find('a', class_='group')['href']
+        browser.click_link_by_partial_href(partial_href)
+        sleep(randint(3,10))
+    except AttributeError as e:
+        print(e)
 
     # preparing the soup obj
-    html = browser.html
-    soup = BeautifulSoup(html, 'html.parser')
+    # including sleeps to allow browser and soup to catch up to new page
+    sleep(randint(3,10))
+    new_html = browser.html
+    sleep(randint(3,10))
+    soup=BeautifulSoup(new_html, 'html.parser')
 
     # getting the featured image url
     featured_image_url = soup.find('aside').find('a')['href']
