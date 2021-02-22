@@ -13,16 +13,21 @@
 
 <body>
     <div class="container-fluid ml-1" style='margin-bottom: 50px;'>
+      <!-- giving the header section a light grey background -->
       <div class="row bg-light">
           <div class="w-15 p-5 mx-auto">
               <header>
                   <h2 style='width:max-content;margin-right:0px;'>Mission to Mars</h2>
-                  <button type="button" class="btn btn-primary" style='margin-left:20px;'><a class="btn btn-primary" href="/scrape" role="button">Scrape New Data</a></button>
+                  <button type="button" class="btn btn-primary" style='margin-left:20px;'>
+                    <a class="btn btn-primary" href="/scrape" role="button">Scrape New Data</a>
+                  </button>
               </header>
           </div>
       </div>
+      <!-- non-header section containing everything else on the page -->
       <div class='non_header' style='padding-left: 50px;'>
         <div class="row">
+          <!-- most recent headline and sub-text -->
           <div class="col-xs-12 pt-5 pl-4">
             <h3>Latest Mars News</h3>
             <h5>{{ nasa_title }}</h5>
@@ -37,8 +42,9 @@
             <img src= {{ jpl_img  }} class='img-fluid' alt="Featured Image">
           </div>
           <!-- end of div class col 6 (featured mars img)-->
-          <div class="col-6 table_container" style='padding-left: 70px;'>
+          <div class="col-6" style='padding-left: 70px;'>
               <h4>Mars Facts</h4>
+              <!-- using |safe to make sure the table reads as a table, not a string -->
               {{ table|safe }}
           </div>
           <!-- end of div class col 6 (table)-->
@@ -46,11 +52,13 @@
         <!-- end of div class row (img and table) -->
         <div class='row pt-5'>
           <div class='col-12'>
+            <!-- heading for hemispheres section - making sure centred -->
             <div class='w-25 mx-auto'>
               <h4>Mars Hemispheres</h4>
             </div>
           </div>
           <!-- end of div class col 12 (mars hemi title) -->
+          <!-- using cards to hold mars hemi pictures and titles -->
           <div class='col-6 pt-4'>
             <div class="card" style="width: 35rem;">
               <img class="card-img-top" src= {{ hemi1url }} alt="Card image cap">

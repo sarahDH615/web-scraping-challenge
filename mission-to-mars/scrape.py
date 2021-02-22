@@ -83,7 +83,6 @@ def scrape():
             'dataframe ', '').replace('border="1"', '').replace(
             '\n', '')
     
-
     #------------------------------------------------------------------------
     # ## Hemisphere images
 
