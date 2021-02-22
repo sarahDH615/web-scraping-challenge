@@ -67,3 +67,11 @@ index.html
     - creating a segment that spans the whole page (column size 12) to hold the Nasa headline and teaser text
     - creating two half-page-width segments, one of which holds the Featured Mars Image, and the other holding the Mars Facts table
     - creating a segment to hold the Mars Hemisphere images, each within a Bootstrap card
+
+### challenges/observations
+
+Another challenge lay in properly rendering the HTML string from the Mars Facts table. Initially, the table was being rendered as a string, rather than a table. Using '|safe' within the fluid HTML on the template allowed for the table to be read properly. Having the table render nicely as a Bootstrap table additionally required changing the to_html() function in scrape.py/mission-to-mars.ipynb to add Bootstrap classes to the HTML string. 
+
+As with the project web-design-challenge, Bootstrap grids proved difficult to work with. The grid system comes with default padding and margin amounts, which meant that creating columns that added up to twelve units in one row were sometimes pushed over to the next line because of accumulated margins. Setting the container to be fluid, and the left margin to be level one ('ml-1) removed this excess, allowing the Featured Mars Image and Mars Facts table to comfortably sit beside each other in one row. 
+
+
