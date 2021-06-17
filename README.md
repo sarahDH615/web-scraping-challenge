@@ -1,7 +1,7 @@
 ## web-scraping-challenge
 
 <p align="center">
-  <img width="800" height="500" src="images/topImage.png" alt='Website preview'>
+  <img width="800" height="400" src="images/topImage.png" alt='Website preview'>
 </p>
 
 ### contains
